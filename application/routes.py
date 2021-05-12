@@ -6,8 +6,7 @@ from flask import render_template, request, redirect, url_for
 @app.route('/')
 @app.route('/home')
 def home():
-    all_crypto = Crypto.query.all()
-    return render_template('index.html', title='Home', all_crypto=all_crypto)
+    render_template('index.html', title='Home')
 
 
 @app.route('/createcrypto', methods=['GET', 'POST'])
@@ -53,3 +52,13 @@ def deletearticle():
             db.session.commit()
             return redirect(url_for('home'))
     return render_template('deletearticle.html', title='Delete Article', form=form)
+
+@app.route('/updatecrypto', methods=['GET', 'PUT'])
+def update():
+    form = CryptoForm()
+    crypto = Crypto.query.filter_by(id=id).first()
+    if request.method == 'PUT':
+        if form.validate_on_submit2():
+            db.session.commit()
+            return redirect(url_for('home'))
+    return render_template('updatecrypto.html', title='Update Crypto', form=form)

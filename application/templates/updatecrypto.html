@@ -1,0 +1,17 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<form action='' method='PUT'>
+{{ form.hidden_tag() }}
+{{ form.name.label }} {{ form.name }}
+<br>
+{{ form.acronym.label }} {{ form.acronym }}
+<br>
+{{ form.description.label }} {{ form.description }}
+<br>
+{{ form.valueusd.label }} {{ form.valueusd }}
+<br>
+{{ form.submit2 }}
+</form>
+
+{% endblock body %}
