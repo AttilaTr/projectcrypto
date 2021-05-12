@@ -1,9 +1,9 @@
 from application import app, db
-from application.models import Crypto
-from application.models import Articles
-from flask import render_template
+from application.models import Tasks
+from application.forms import TaskForm
+from flask import render_template, request, redirect
 
-@app.route('/add')
+@app.route('/create')
 def add():
     new_crypto = Crypto(name = 'Name of crypto', acronym = 'Acronym of crypto', description = 'Descryption of crypto', valueusd = 'Value of crypto in USD')
     db.session.add(new_crypto)
