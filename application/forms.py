@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired
 class CryptoForm(FlaskForm):
    name = StringField('Name of cryptocurrency', validators=[DataRequired()])
    acronym = StringField('Acronym of crypto', validators=[DataRequired()])
-   descryption = StringField('Descryption of crypto', validators=[DataRequired()])
+   description = StringField('Descryption of crypto', validators=[DataRequired()])
    valueusd = IntegerField('Value of crypto USD', validators=[DataRequired()]) 
    submit = SubmitField('Add cryptocurrency')
 

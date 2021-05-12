@@ -6,8 +6,7 @@ from flask import render_template, request, redirect, url_for
 @app.route('/')
 @app.route('/home')
 def home():
-all_crypto = Crypto.query.all()
-    output = ""
+    all_crypto = Crypto.query.all()
     return render_template('index.html', title='Home', all_crypto=all_crypto)
 
 
@@ -20,7 +19,7 @@ def create():
             db.session.add(new_crypto)
             db.session.commit()
             return redirect(url_for('home'))
-    return render_template('add.html', title='Create a cryptocurrency', form=form)
+    return render_template('create.html', title='Create a cryptocurrency', form=form)
 
 @app.route('/read')
 def read():
