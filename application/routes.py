@@ -1,14 +1,26 @@
 from application import app, db
-from application.models import Tasks
-from application.forms import TaskForm
-from flask import render_template, request, redirect
+from application.models import Crypto, Articles
+from application.forms import CryptoForm, ArticlesForm
+from flask import render_template, request, redirect, url_for
 
-@app.route('/create')
-def add():
-    new_crypto = Crypto(name = 'Name of crypto', acronym = 'Acronym of crypto', description = 'Descryption of crypto', valueusd = 'Value of crypto in USD')
-    db.session.add(new_crypto)
-    db.session.commit()
-    return 'New cryptocurrency added to database'
+@app.route('/')
+@app.route('/home')
+def home():
+all_crypto = Crypto.query.all()
+    output = ""
+    return render_template('index.html', title='Home', all_crypto=all_crypto)
+
+
+@app.route('/create', methods=['GET', 'POST'])
+def create():
+    form = CryptoForm()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            new_crypto = Crypto(name=form.name.data)
+            db.session.add(new_crypto)
+            db.session.commit()
+            return redirect(url_for('home'))
+    return render_template('add.html', title='Create a cryptocurrency', form=form)
 
 @app.route('/read')
 def read():
