@@ -10,8 +10,8 @@ def home():
     return render_template('index.html', title='Home', all_crypto=all_crypto)
 
 
-@app.route('/create', methods=['GET', 'POST'])
-def create():
+@app.route('/createcrypto', methods=['GET', 'POST'])
+def createcrypto():
     form = CryptoForm()
     if request.method == 'POST':
         if form.validate_on_submit():
@@ -19,7 +19,29 @@ def create():
             db.session.add(new_crypto)
             db.session.commit()
             return redirect(url_for('home'))
-    return render_template('create.html', title='Create a cryptocurrency', form=form)
+    return render_template('createcrypto.html', title='Create a cryptocurrency', form=form)
+
+@app.route('/createarticles', methods=['GET', 'POST'])
+def createarticles():
+    form = ArticlesForm()
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            new_article = Articles(title=form.article.data)
+            db.session.add(new_article)
+            db.session.commit()
+            return redirect(url_for('home'))
+    return render_template('createarticles.html', title='New Article entry', form=form)
+
+
+
+
+
+
+
+
+
+
+
 
 @app.route('/read')
 def read():

@@ -5,7 +5,8 @@
     <body>
         <h1>CryptoArticles - {{ title }}</h1>
         <a href="{{ url_for('home') }}">Home</a>
-        <a href="{{ url_for('create') }}">Create Crypto</a>
+        <a href="{{ url_for('createcrypto') }}">Create Crypto</a>
+        <a href="{{ url_for('createarticles') }}">Create Articles</a>
         {% block body %}
         {% endblock body %}
     </body>
