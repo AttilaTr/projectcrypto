@@ -8,6 +8,7 @@ class CryptoForm(FlaskForm):
    description = StringField('Descryption of crypto', validators=[DataRequired()])
    valueusd = IntegerField('Value of crypto USD', validators=[DataRequired()]) 
    submit = SubmitField('Add cryptocurrency')
+   submit1 = SubmitField('Delete cryptocurrency')
 
 class ArticlesForm(FlaskForm):
    title = StringField('Title of article', validators=[DataRequired()])
@@ -15,3 +16,4 @@ class ArticlesForm(FlaskForm):
    topic = StringField('Topic of article', validators=[DataRequired()])
    link = StringField('Link to article', validators=[DataRequired()]) 
    submit = SubmitField('Add article')
+   submit1 = SubmitField('Delete article')

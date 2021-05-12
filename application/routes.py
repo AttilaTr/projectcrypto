@@ -32,37 +32,24 @@ def createarticles():
             return redirect(url_for('home'))
     return render_template('createarticles.html', title='New Article entry', form=form)
 
+@app.route('/deletecrypto', methods=['GET', 'DELETE'])
+def deletecrypto():
+    form = CryptoForm()
+    crypto = Crypto.query.filter_by(id=id).first()
+    if request.method == 'DELETE':
+        if form.validate_on_submit1():
+            db.session.delete(crypto)
+            db.session.commit()
+            return redirect(url_for('home'))
+    return render_template('deletecrypto.html', title='Delete Crypto', form=form)
 
-
-
-
-
-
-
-
-
-
-
-@app.route('/read')
-def read():
-    all_crypto = Crypto.query.all()
-    crypto_string = ''
-    for crypto in all_crypto:
-        crypto_string += '<br>'+ crypto.name
-    return crypto_string
-
-@app.route('/update/<name>, <acronym>, <description>, <valueusd>')
-def update(name, acronym, description, valueusd):
-    first_crypto = Crypto.query.first()
-    first_crypto.name = name
-    first_crypto.acronym = acronym
-    first_crypto.name = description
-    first_crypto.name = valueusd
-    db.session.commit()
-    return first_crypto.name
-
-@app.route('/delete/')
-def delete():
-    crypto_to_delete = Crypto.query.first()
-    db.session.delete(crypto_to_delete)
-    db.session.commit()
+@app.route('/deletearticle', methods=['GET', 'DELETE'])
+def deletearticle():
+    form = ArticlesForm()
+    article = Articles.query.filter_by(id=id).first()
+    if request.method == 'DELETE':
+        if form.validate_on_submit1():
+            db.session.delete(article)
+            db.session.commit()
+            return redirect(url_for('home'))
+    return render_template('deletearticle.html', title='Delete Article', form=form)
