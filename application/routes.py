@@ -41,6 +41,13 @@ def deletecrypto(id):
     db.session.commit()
     return redirect(url_for('home'))
 
+@app.route('/deletearticles/<int:id>', methods=['GET', 'DELETE'])
+def deletearticles(id):
+    articles = Articles.query.filter_by(id=id).first()
+    db.session.delete(articles)
+    db.session.commit()
+    return redirect(url_for('home'))
+
 @app.route('/updatecrypto/<int:id>', methods=['GET', 'POST'])
 def updatecrypto(id):
     form = CryptoForm()
