@@ -1,3 +1,12 @@
 {% extends 'layout.html' %}
 {% block body %}
+{% for crypto in all_crypto %}
+{{ crypto.name }} {{ crypto.acronym }} {{ crypto.description }} {{ crypto.valueusd }}
+<form action="{{ url_for('deletecrypto', id=crypto.id) }}">
+    <input type=submit value='Delete'>
+</form>
+<form action="{{ url_for('updatecrypto', id=crypto.id) }}">
+    <input type=submit value='Update'>
+</form>
+{% endfor %}
 {% endblock body %}
