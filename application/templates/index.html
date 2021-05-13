@@ -9,4 +9,9 @@
     <input type=submit value='Update'>
 </form>
 {% endfor %}
+{% for articles in all_articles %}
+{{ articles.title }} {{ articles.author }} {{ articles.topic }} {{ articles.link }}
+<form>
+</form>
+{% endfor %}
 {% endblock body %}

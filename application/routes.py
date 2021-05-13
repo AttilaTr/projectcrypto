@@ -6,8 +6,9 @@ from flask import render_template, request, redirect, url_for
 @app.route('/')
 @app.route('/home')
 def home():
+    all_articles = Articles.query.all()
     all_crypto = Crypto.query.all()
-    return render_template('index.html', title='Home', all_crypto=all_crypto)
+    return render_template('index.html', title='Home', all_crypto=all_crypto, all_articles=all_articles)
 
 
 @app.route('/createcrypto', methods=['GET', 'POST'])
@@ -26,7 +27,8 @@ def createarticles():
     form = ArticlesForm()
     if request.method == 'POST':
         if form.validate_on_submit():
-            new_article = Articles(title=form.article.data)
+            cryptoid = Crypto.query.filter_by(acronym=form.cryptoacronym.data).first().id
+            new_article = Articles(title=form.title.data, author=form.author.data, topic=form.topic.data, link=form.link.data, crypto_id=cryptoid)
             db.session.add(new_article)
             db.session.commit()
             return redirect(url_for('home'))
@@ -38,24 +40,12 @@ def deletecrypto(id):
     db.session.delete(crypto)
     db.session.commit()
     return redirect(url_for('home'))
-    
-@app.route('/deletearticle', methods=['GET', 'DELETE'])
-def deletearticle():
-    form = ArticlesForm()
-    article = Articles.query.filter_by(id=id).first()
-    if request.method == 'DELETE':
-        if form.validate_on_submit():
-            db.session.delete(article)
-            db.session.commit()
-            return redirect(url_for('home'))
-    return render_template('deletearticle.html', title='Delete Article', form=form)
 
 @app.route('/updatecrypto/<int:id>', methods=['GET', 'POST'])
 def updatecrypto(id):
     form = CryptoForm()
     crypto = Crypto.query.filter_by(id=id).first()
     if request.method == 'POST':
-        #app.logger.info()
         if form.validate_on_submit():
             crypto.name = form.name.data
             crypto.acronym = form.acronym.data
