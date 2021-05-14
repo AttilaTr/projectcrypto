@@ -7,9 +7,10 @@ from application.models import Crypto, Articles
 
 class TestBase(TestCase):
     def create_app(self):
-        app.config.update(SQLALCHEMY_DATABASE_URI="sqlite:///",
+        app.config.update(SQLALCHEMY_DATABASE_URI="sqlite:///test.db",
                 SECRET_KEY='TEST_SECRET_KEY',
                 DEBUG=True,
+        WTF_CSRF_ENABLED=False
         )
         return app
 
@@ -18,14 +19,7 @@ class TestBase(TestCase):
         test_crypto = Crypto(name='IOTA', acronym='MIOTA', description='Progressive crypto', valueusd=720)
         db.session.add(test_crypto)
         db.session.commit()
-
-    def tearDown(self):
-        db.session.remove()
-        db.drop_all()
-
-    def setUp(self):
-        db.create_all()
-        test_articles = Articles(title='Smart contact protocol?', author='cointelegraph.com', topic='New service for IOTA', link='https://cointelegraph.com/news/iota-releases-smart-contracts-protocol')
+        test_articles = Articles(title='Smart contact protocol?', author='cointelegraph.com', topic='New service for IOTA', link='https://cointelegraph.com/news/iota-releases-smart-contracts-protocol', crypto_id=test_crypto.id)
         db.session.add(test_articles)
         db.session.commit()
 
@@ -67,19 +61,19 @@ class TestCreateC(TestBase):
     def test_create_crypto(self):
         response = self.client.post(
             url_for('createcrypto'),
-            data=dict(description='Create Crypto'),
+            data=dict(name='Bitcoin', acronym='BTC', description='Elons favourite', valueusd=55000),
             follow_redirects=True
         )
-        self.assertIn(b'Create Crypto', response.data)
+        self.assertIn(b'Bitcoin', response.data)
 
 class TestCreateA(TestBase):
     def test_create_articles(self):
         response = self.client.post(
             url_for('createarticles'),
-            data=dict(description='Create Article'),
+            data=dict(title='Affects on the economy', author='bbc.com', topic='Interesting', link='bbc.com', crypto_id=1),
             follow_redirects=True
         )
-        self.assertIn(b'Create Article', response.data)
+        self.assertIn(b'Affects on the economy', response.data)
 
 class TestUpdate(TestBase):
     def test_update_crypto(self):

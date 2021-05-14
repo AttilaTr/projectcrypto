@@ -14,4 +14,4 @@ class Articles(db.Model):
     author = db.Column(db.String(50), nullable=False)
     topic = db.Column(db.String(100), nullable=False)
     link = db.Column(db.String(200), nullable=False)
-    crypto_id = db.Column(db.Integer, db.ForeignKey('crypto.id'))
+    crypto_id = db.Column(db.Integer, db.ForeignKey('crypto.id'), nullable=False)
