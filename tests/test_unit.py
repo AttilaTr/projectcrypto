@@ -15,8 +15,18 @@ class TestBase(TestCase):
 
     def setUp(self):
         db.create_all()
-        test_crypto = Crypto(description='Testing the app')
-        db.session.add()
+        test_crypto = Crypto(name='IOTA', acronym='MIOTA', description='Progressive crypto', valueusd=720)
+        db.session.add(test_crypto)
+        db.session.commit()
+
+    def tearDown(self):
+        db.session.remove()
+        db.drop_all()
+
+    def setUp(self):
+        db.create_all()
+        test_articles = Articles(title='Smart contact protocol?', author='cointelegraph.com', topic='New service for IOTA', link='https://cointelegraph.com/news/iota-releases-smart-contracts-protocol')
+        db.session.add(test_articles)
         db.session.commit()
 
     def tearDown(self):
@@ -37,39 +47,39 @@ class TestViews(TestBase):
         self.assertEqual(response.status_code, 200)
 
     def test_update_get(self):
-        response = self.client.get(url_for('updatecrypto', id=1))
+        response = self.client.get(url_for('updatecrypto', id=1), follow_redirects=True)
         self.assertEqual(response.status_code, 200)
 
     def test_delete_get(self):
-        response = self.client.get(url_for('deletecrypto', id=1))
+        response = self.client.get(url_for('deletecrypto', id=1), follow_redirects=True)
         self.assertEqual(response.status_code, 200)
 
     def test_delete_get(self):
-        response = self.client.get(url_for('deletearticles', id=1))
+        response = self.client.get(url_for('deletearticles', id=1), follow_redirects=True)
         self.assertEqual(response.status_code, 200)
 
 class TestRead(TestBase):
     def test_read_home(self):
         response = self.client.get(url_for('home'))
-        self.assertIn(b'Test the application', response.data)
+        self.assertIn(b'CryptoArticles', response.data)
 
 class TestCreateC(TestBase):
     def test_create_crypto(self):
         response = self.client.post(
             url_for('createcrypto'),
-            data=dict(description='Create a new Crypto'),
+            data=dict(description='Create Crypto'),
             follow_redirects=True
         )
-        self.assertIn(b'Create a new Crypto', response.data)
+        self.assertIn(b'Create Crypto', response.data)
 
 class TestCreateA(TestBase):
     def test_create_articles(self):
         response = self.client.post(
             url_for('createarticles'),
-            data=dict(description='Create a new Article'),
+            data=dict(description='Create Article'),
             follow_redirects=True
         )
-        self.assertIn(b'Create a new Article', response.data)
+        self.assertIn(b'Create Article', response.data)
 
 class TestUpdate(TestBase):
     def test_update_crypto(self):
