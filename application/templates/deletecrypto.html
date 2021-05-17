@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% block body %}
+
+<form action='' method='DELETE'>
+{{ form.hidden_tag() }}
+{{ form.name.label }} {{ form.name }}
+<br>
+{{ form.submit1 }}
+</form>
+
+{% endblock body %}
