@@ -1,21 +1,55 @@
-LOG of Project Crypto
-    
---- 26/04/2021
-    --- Kanban board on Trello created. (Project Crypto)
-    --- Project repository (Project-Crypto) created on GitHub with 1 branch (Documentation).
-    --- Documentation png created and uploded to Github. (Trello.png)
-    --- Log file (README.md) created and updated.
-    
---- 01/05/2021
-    --- Budget --- domain name cost offers from godaddy.com screenshot created. (Budget Domain.png)
-    --- Databases, Website coding and testing, Databases project cards created on Trello board.
-    --- User stories created for: Initial content, Design, Website coding and testing, Databases on Trello board
-    --- Databases, Budget cards were moved to "Doing" position on Trello board as I started working on them. (Trello2.png)
-    --- MySQL database created on GCL virtual SQL server. Server's name: myfirstsql.
-    --- Database script has been saved (DB script V1) 
-    
---- 04/05/2021
-    --- Risk Assessement V1 is created.
-    --- Database cript has been updated with joins. (DB script V2)
-    --- Trello board updated. (Trello3.png)
-    --- Documentation uploaded to Github.
+Project Crypto
+
+Concept
+
+The main goal of this project is to create a database accessible online, in which users can add, and delete articles on a graphical interface about cryptocurrencies they are interested in. 
+
+Specification
+
+To fulfil the goal specified in the concept, the following methods and technologies have been used:
+
+Project management
+
+For creating and tracking the development of the project Trello’s Kanban board has been used. It contains user stories and the colour coded MOSCOW prioritisation of the elements from day 1 to the last day of coding.
+
+
+
+Version control
+
+To be able to follow the advancement of coding I applied GITHUB as a version control application. I created branches for each days of coding to be able to compare and if necessary, revert the different versions of coding. The name of the repository is “projectcrypto”.
+
+
+
+Databases
+
+The current design of the databases is the following using ERD (Entity Relationship Diagram).
+There are two tables: Cryptocurrencies and Articles. They are connected by one to many relationship as one cryptocurrency can be present in many articles.
+I created the actual database in Flask application, using Python as a programming language.
+
+
+
+
+
+Risk assessment
+
+
+A created a risk assessment to be able to realize and mitigate the possible risks during the project.
+
+
+
+
+CI pipeline
+
+I decided to use Jenkins as a CI server and I built automated testing of the current code inside Jenkins, which generates a report of the tested codes.
+
+
+
+I tested the actual code and received the following result:
+
+
+The Design
+
+The final design was done by using basic HTML coding and a Python application called Flask.
+
+
+
