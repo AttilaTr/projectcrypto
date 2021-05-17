@@ -1,3 +1,5 @@
+Detailed readme in projectcrypto.docx
+
 Project Crypto
 
 Concept
@@ -10,13 +12,13 @@ To fulfil the goal specified in the concept, the following methods and technolog
 
 Project management
 
-For creating and tracking the development of the project Trelloís Kanban board has been used. It contains user stories and the colour coded MOSCOW prioritisation of the elements from day 1 to the last day of coding.
+For creating and tracking the development of the project Trello‚Äôs Kanban board has been used. It contains user stories and the colour coded MOSCOW prioritisation of the elements from day 1 to the last day of coding.
 
 
 
 Version control
 
-To be able to follow the advancement of coding I applied GITHUB as a version control application. I created branches for each days of coding to be able to compare and if necessary, revert the different versions of coding. The name of the repository is ìprojectcryptoî.
+To be able to follow the advancement of coding I applied GITHUB as a version control application. I created branches for each days of coding to be able to compare and if necessary, revert the different versions of coding. The name of the repository is ‚Äúprojectcrypto‚Äù.
 
 
 
