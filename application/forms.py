@@ -1,5 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SubmitField
+from wtforms.fields.core import SelectField
 from wtforms.validators import DataRequired
 
 class CryptoForm(FlaskForm):
@@ -16,7 +17,7 @@ class ArticlesForm(FlaskForm):
    author = StringField('Author of article', validators=[DataRequired()])
    topic = StringField('Topic of article', validators=[DataRequired()])
    link = StringField('Link to article', validators=[DataRequired()])
-   cryptoacronym = StringField('Cryptoacronym in article', validators=[DataRequired()]) 
+   cryptoacronym = StringField('Cryptoacronym in article', validators=[DataRequired()])
    submit = SubmitField('Add article')
    submit1 = SubmitField('Delete article')
-   submit2 = SubmitField('Update article')
+   

@@ -1,18 +1,71 @@
 {% extends 'layout.html' %}
 {% block body %}
+<style>
+    caption {
+     font-size:35px;
+    }
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+    }
+    th, td {
+      padding: 5px;
+    }
+    th {
+      text-align: left;
+    }
+</style>
+<table>
+    <caption>Articles</caption>
+    <tr>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Topic</th>
+      <th>Link</th>
+      <th>Delete</th>
+    </tr>
+{% for article in all_article %}
+    <tr>
+        <td>{{ article.title }}</td>
+        <td>{{ article.author }}</td>
+        <td>{{ article.topic }}</td>
+        <td>{{ article.link }}</td>
+        <td>
+            <form action="{{ url_for('deletearticle', id=article.id) }}">
+                <input type=submit value='Delete Article'>
+            </form>
+        </td>
+    </tr>
+{% endfor %}
+<table>
+<br>
+    <caption>Cryptocurrencies</caption>
+    <tr>
+      <th>Name</th>
+      <th>Acronym</th>
+      <th>Description</th>
+      <th>Value</th>
+      <th>Update</th>
+      <th>Delete</th>
+    </tr>
 {% for crypto in all_crypto %}
-{{ crypto.name }} {{ crypto.acronym }} {{ crypto.description }} {{ crypto.valueusd }}
-<form action="{{ url_for('deletecrypto', id=crypto.id) }}">
-    <input type=submit value='Delete'>
-</form>
-<form action="{{ url_for('updatecrypto', id=crypto.id) }}">
-    <input type=submit value='Update'>
-</form>
-{% endfor %}
-{% for articles in all_articles %}
-{{ articles.title }} {{ articles.author }} {{ articles.topic }} {{ articles.link }}
-<form action="{{ url_for('deletearticles', id=articles.id) }}">
-    <input type=submit value='Delete'>
-</form>
-{% endfor %}
+    <tr>
+        <td> {{ crypto.name }} </td>
+        <td> {{ crypto.acronym }} </td>
+        <td> {{ crypto.description }} </td>
+        <td> {{ crypto.valueusd }} </td>
+        <td>
+            <form action="{{ url_for('deletecrypto', id=crypto.id) }}">
+                <input type=submit value='Delete Cryptocurrency'>
+            </form>
+        </td>
+        <td>
+            <form action="{{ url_for('updatecrypto', id=crypto.id) }}">
+                <input type=submit value='Update Cryptocurrency'>
+        </td>
+    </form>
+    </tr>
+    {% endfor %}
+</table>
 {% endblock body %}
+
