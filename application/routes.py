@@ -6,9 +6,9 @@ from flask import render_template, request, redirect, url_for
 @app.route('/')
 @app.route('/home')
 def home():
-    all_articles = Articles.query.all()
     all_crypto = Crypto.query.all()
-    return render_template('index.html', title='Home', all_crypto=all_crypto, all_articles=all_articles)
+    all_article = Articles.query.all()
+    return render_template('index.html', title='Home', all_crypto=all_crypto, all_article=all_article)
 
 
 @app.route('/createcrypto', methods=['GET', 'POST'])
@@ -41,10 +41,10 @@ def deletecrypto(id):
     db.session.commit()
     return redirect(url_for('home'))
 
-@app.route('/deletearticles/<int:id>', methods=['GET', 'DELETE'])
-def deletearticles(id):
-    articles = Articles.query.filter_by(id=id).first()
-    db.session.delete(articles)
+@app.route('/deletearticle/<int:id>', methods=['GET', 'DELETE'])
+def deletearticle(id):
+    article = Articles.query.filter_by(id=id).first()
+    db.session.delete(article)
     db.session.commit()
     return redirect(url_for('home'))
 
