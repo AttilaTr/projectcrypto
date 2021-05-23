@@ -34,6 +34,10 @@ A created a risk assessment to be able to realize and mitigate the possible risk
 
 [Risk assessment](https://github.com/AttilaTr/projectcrypto/blob/documentation/Risk%20Assesement%20V2.ods)
 
+## Coding days
+
+I have done the majority of coding in python, using Flask application and simple HTML for the webpages. I pushed the codes multiple times during development, those commits can be found in separate folders on the Github repository under the name of 'codingday'. First I designed the databases, which containes the two tables(classes). After using wtforms (in Flask) I designed the input forms and labels. In routes.py I created the routes for the webpages using logical connections and I finished the process with creating the pages in html/jinja2. Finally I have done the unit testing application. 
+
 ## CI pipeline
 
 I decided to use Jenkins as a CI server and I built automated testing of the current code inside Jenkins, which generates a report of the tested codes.
