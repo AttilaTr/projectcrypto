@@ -42,7 +42,7 @@ I created the actual database in Flask application, using Python as a programmin
 
 A created a risk assessment to be able to realize and mitigate the possible risks during the project.
 
-![Risk assessment](https://github.com/AttilaTr/projectcrypto/blob/documentation/Risk%20Assesement%20V2.ods)
+![Risk assessment](https://github.com/AttilaTr/projectcrypto/blob/documentation/Risk%20assessment%20V2F.png)
 
 ## Coding days ##
 
